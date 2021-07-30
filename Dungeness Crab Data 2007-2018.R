@@ -51,7 +51,8 @@ Crab$Depth <- cut(Crab$depth_m, breaks = c(-Inf, 100, 200, Inf),
                   labels = c("40-100 m", "100-200 m", "200+ m"))
 
 
-
+#Save as CSV file
+write.csv(Crab, "CRAB2.csv")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Plot CPUE vs O2 Concentration ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -71,7 +72,7 @@ CPlot <- ggplot(data = Crab, aes(x = o2_ml_per_l, y = cpue_kg_per_ha_der, color 
         axis.title.y = element_text(size =12,lineheight=3)) 
   
 
-ggplotly(CPlot)
+ggplotly(CPlot) 
 
 
 #Save as static image
@@ -98,7 +99,11 @@ CPlot <- ggplot(data = Crab, aes(x = temp, y = o2_ml_per_l, color = Depth)) +
 ggplotly(CPlot)
 
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Use SeaCarb ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+carbfull(flag = 21, var1, var2, S=35, T=25, Patm=1, P=0, Pt=0, Sit=0,
+         k1k2="x", kf="x", ks="d", pHscale="T", b="u74", gas="potential",
+         NH4t=0, HSt=0)
 
 
 
